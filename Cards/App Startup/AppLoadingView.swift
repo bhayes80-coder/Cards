@@ -32,14 +32,29 @@
 
 import SwiftUI
 
-@main
-struct CardsApp: App {
-  @StateObject var store = CardStore(defaultData: true)
+struct AppLoadingView: View {
+  @State private var showSplash = true
 
-  var body: some Scene {
-    WindowGroup {
+  var body: some View {
+    if showSplash {
+      SplashScreen()
+        .ignoresSafeArea()
+        .onAppear {
+          withAnimation(
+            .linear(duration: 1.0)
+            .delay(1.5)) {
+              showSplash = false
+            }
+        }
+    } else {
       CardsListView()
-        .environmentObject(store)
+        .transition(.scale(scale: 0, anchor: .top))
     }
   }
+}
+
+#Preview {
+  AppLoadingView()
+    .environmentObject(
+      CardStore(defaultData: true))
 }
