@@ -63,21 +63,14 @@ enum Settings {
   }
 }
 
-// use this method for
-// the drag and drop challenge
-// When dropped, the center of the image
-// will be located at the drop point
 extension Settings {
   static func calculateDropOffset(
     viewScale: CGFloat,
     location: CGPoint
   ) -> CGSize {
-    // Convert the coordinates to the original (unscaled) card size
     let originalX = location.x / viewScale
     let originalY = location.y / viewScale
 
-    // Calculate the offset to center the image on the drop location
-    // Adjust by subtracting half of the original card size
     let offset = CGSize(
       width: originalX - (Settings.cardSize.width * 0.5),
       height: originalY - (Settings.cardSize.height * 0.5)

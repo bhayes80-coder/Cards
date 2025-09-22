@@ -32,8 +32,6 @@
 
 import SwiftUI
 
-// swiftlint:disable function_body_length
-
 struct CardToolbar: ViewModifier {
   @Environment(\.dismiss) var dismiss
   @EnvironmentObject var store: CardStore
@@ -141,5 +139,3 @@ struct CardToolbar: ViewModifier {
       card: .constant(Card())))
     .environmentObject(CardStore(defaultData: true))
 }
-
-// swiftlint:enable function_body_length

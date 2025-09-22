@@ -32,13 +32,11 @@
 
 import SwiftUI
 
-// MARK: - SAVE, LOAD AND DELETE IMAGE FILE
 extension UIImage {
   static let minsize = CGSize(width: 300, height: 200)
   static let maxSize = CGSize(width: 1000, height: 1500)
 
   func save(to filename: String? = nil) -> String {
-    // first resize large images
     let image = resizeLargeImage()
     let path = filename ?? UUID().uuidString
     let url = URL.documentsDirectory.appendingPathComponent(path)
@@ -71,7 +69,6 @@ extension UIImage {
   }
 }
 
-// MARK: - GET IMAGE SIZE
 extension UIImage {
   func initialSize() -> CGSize {
     var width = Settings.defaultElementSize.width
@@ -97,7 +94,6 @@ extension UIImage {
   }
 }
 
-// MARK: - RESIZE IMAGE
 extension UIImage {
   func resizeLargeImage() -> UIImage {
     let defaultSize: CGFloat = 1000
@@ -117,8 +113,6 @@ extension UIImage {
   }
 
   func resize(to size: CGSize) -> UIImage {
-    // UIGraphicsImageRenderer sets scale to device's screen scale
-    // change the scale to 1 to get the real image size
     let format = UIGraphicsImageRendererFormat()
     format.scale = 1
     return UIGraphicsImageRenderer(size: size, format: format).image { _ in
